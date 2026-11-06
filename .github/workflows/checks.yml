@@ -1,0 +1,11 @@
+name: Check source
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Python sources
+        run: python3 -m compileall -q .
+      - name: Test isolated environment edits
+        run: python3 -m unittest -v
